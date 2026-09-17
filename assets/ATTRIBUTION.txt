@@ -1,0 +1,26 @@
+Google Noto Emoji
+=================
+
+Project:    Noto Emoji (SVG emoji images)
+Source:     https://github.com/googlefonts/noto-emoji
+Commit:     f5dd683424a73e2314a8c1f1e359c19e8742
+            (short form: 8998f5dd) - pinned on 2026-09-17
+
+License:    Apache License 2.0
+            Full terms in this directory: LICENSE-NOTO.txt
+
+Source files downloaded from the repository's svg/ directory at the
+pinned commit above, stored locally, and used in this project:
+
+    emoji_u1f363.svg   U+1F363  🍣 Sushi            -> assets/sushi.svg
+    emoji_u1f957.svg   U+1F957  🥗 Green salad      -> assets/salad.svg
+    emoji_u1f32e.svg   U+1F32E  🌮 Taco             -> assets/tacos.svg
+    emoji_u1f35c.svg   U+1F35C  🍜 Steaming bowl    -> assets/ramen.svg
+    emoji_u1f96a.svg   U+1F96A  🥪 Sandwich         -> assets/sandwich.svg
+    emoji_u1f35d.svg   U+1F35D  🍝 Spaghetti        -> assets/pasta.svg
+    emoji_u1f35b.svg   U+1F35B  🍛 Curry rice       -> assets/curry.svg
+    emoji_u1f969.svg   U+1F969  🥩 Cut of meat      -> assets/steak.svg
+    emoji_u1f356.svg   U+1F356  🍖 Meat on bone     -> assets/bbq.svg
+
+Copyright 2013 Google, Inc. / Google LLC.
+Licensed under the Apache License, Version 2.0.
