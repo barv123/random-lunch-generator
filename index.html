@@ -63,6 +63,11 @@
             color: #ff6b6b;
         }
         
+        .food-icon-img {
+            width: 4rem;
+            height: 4rem;
+        }
+        
         .food-name {
             font-size: 2rem;
             color: #333;
@@ -151,25 +156,29 @@
             const foodIcon = document.querySelector('.food-icon');
             const foodName = document.querySelector('.food-name');
             const lunchDisplay = document.querySelector('.lunch-display');
+            let pendingTimer = null;
             
-            // Array of lunch options with corresponding Font Awesome icons
+            // Array of lunch options with their visual representation
             const lunchMenu = [
-                { name: "Pizza", icon: "fas fa-pizza-slice" },
-                { name: "Sushi", icon: "fas fa-fish" },
-                { name: "Burger", icon: "fas fa-hamburger" },
-                { name: "Salad", icon: "fas fa-leaf" },
-                { name: "Tacos", icon: "fas fa-utensil-spoon" },
-                { name: "Ramen", icon: "fas fa-mug-hot" },
-                { name: "Sandwich", icon: "fas fa-bread-slice" },
-                { name: "Pasta", icon: "fas fa-utensils" },
-                { name: "Curry", icon: "fas fa-mortar-pestle" },
-                { name: "Steak", icon: "fas fa-drumstick-bite" },
-                { name: "Soup", icon: "fas fa-bowl-food" },
-                { name: "BBQ", icon: "fas fa-fire" }
+                { name: "Pizza", visualType: "font-awesome", visual: "fas fa-pizza-slice" },
+                { name: "Sushi", visualType: "local-svg", visual: "assets/sushi.svg" },
+                { name: "Burger", visualType: "font-awesome", visual: "fas fa-hamburger" },
+                { name: "Salad", visualType: "local-svg", visual: "assets/salad.svg" },
+                { name: "Tacos", visualType: "local-svg", visual: "assets/tacos.svg" },
+                { name: "Ramen", visualType: "local-svg", visual: "assets/ramen.svg" },
+                { name: "Sandwich", visualType: "local-svg", visual: "assets/sandwich.svg" },
+                { name: "Pasta", visualType: "local-svg", visual: "assets/pasta.svg" },
+                { name: "Curry", visualType: "local-svg", visual: "assets/curry.svg" },
+                { name: "Steak", visualType: "local-svg", visual: "assets/steak.svg" },
+                { name: "Soup", visualType: "font-awesome", visual: "fas fa-bowl-food" },
+                { name: "BBQ", visualType: "local-svg", visual: "assets/bbq.svg" }
             ];
             
             // Function to generate random lunch
             function generateRandomLunch() {
+                // Cancel any pending timeout from a previous click
+                if (pendingTimer) clearTimeout(pendingTimer);
+                
                 // Remove fade-in class if it exists
                 lunchDisplay.classList.remove('fade-in');
                 
@@ -182,12 +191,18 @@
                 foodName.textContent = "Thinking...";
                 
                 // After a short delay, show the selected lunch
-                setTimeout(() => {
-                    foodIcon.innerHTML = `<i class="${selectedLunch.icon}"></i>`;
+                pendingTimer = setTimeout(() => {
+                    if (selectedLunch.visualType === "font-awesome") {
+                        foodIcon.innerHTML = `<i class="${selectedLunch.visual}"></i>`;
+                    } else {
+                        foodIcon.innerHTML = `<img src="${selectedLunch.visual}" alt="${selectedLunch.name}" class="food-icon-img" onerror="this.onerror=null; this.outerHTML='<i class=&quot;fas fa-question&quot;></i>';">`;
+                    }
                     foodName.textContent = selectedLunch.name;
                     
                     // Add animation class
                     lunchDisplay.classList.add('fade-in');
+                    
+                    pendingTimer = null;
                 }, 500);
             }
             
